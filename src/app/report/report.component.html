@@ -1,1 +1,37 @@
-<p>report works!</p>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4 mt-2">
+      <button type="button" class="btn btn-primary btn-sm" (click)="download()">Download CSV</button>
+    </div>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Tanggal Input</th>
+          <th>Name Perusahaan</th>
+          <th>Nama Barang</th>
+          <th>Total Barang</th>
+          <th>Harga Barang</th>
+          <th>Grand Total</th>
+          <th>Sisa Barang</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngFor="let row of report; let i = index">
+          <tr>
+            <td>{{ i + 1 }}</td>
+            <td>{{ row.createdDate }}</td>
+            <td>{{ row.companyName }}</td>
+            <td>{{ row.productName }}</td>
+            <td>{{ row.quantity }}</td>
+            <td>{{ row.price }}</td>
+            <td>{{ row.totalPrice }}</td>
+            <td>{{ row.stock }}</td>
+          </tr>
+        </ng-container>
+      </tbody>
+    </table>
+  </div>
+</div>

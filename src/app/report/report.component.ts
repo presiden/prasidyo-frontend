@@ -32,4 +32,8 @@ export class ReportComponent implements OnInit {
       alert(JSON.stringify(err));
     });
   }
+
+  public download(){
+    
+  }
 }

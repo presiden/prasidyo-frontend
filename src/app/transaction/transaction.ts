@@ -6,7 +6,7 @@ export class Transaction {
     id?: number;
     company: Company;
     totalPrice?: number;
-    createdDate?: Date;
+    createdDate?: String;
     listDetails: TransactionDetails[];
   }
   

@@ -34,6 +34,24 @@ export class ReportComponent implements OnInit {
   }
 
   public download(){
-    
+    const replacer = (key, value) => (value === null ? '' : value); //null handler
+    const header = Object.keys(this.report[0]);
+    const csv = this.report.map((row) =>
+      header
+        .map((fieldName) => JSON.stringify(row[fieldName], replacer))
+        .join('|')
+    );
+    csv.unshift(header.join('|'));
+    const csvArray = csv.join('\r\n');
+  
+    const a = document.createElement('a');
+    const blob = new Blob([csvArray], { type: 'text/csv' });
+    const url = window.URL.createObjectURL(blob);
+  
+    a.href = url;
+    a.download = 'report.csv';
+    a.click();
+    window.URL.revokeObjectURL(url);
+    a.remove();
   }
 }

@@ -25,7 +25,7 @@
             <td [attr.rowspan]="transaction.listDetails.length + 1">{{ i + 1 }}</td>
             <td [attr.rowspan]="transaction.listDetails.length + 1">{{ transaction.id }}</td>
             <td [attr.rowspan]="transaction.listDetails.length + 1">{{ transaction.company.name }}</td>
-            <td [attr.rowspan]="transaction.listDetails.length + 1">{{ transaction.createdDate }}</td>
+            <td [attr.rowspan]="transaction.listDetails.length + 1">{{ transaction.createdDate.substr(0,10) }}</td>
           </tr>
           <tr *ngFor="let details of transaction.listDetails">
             <td>{{ details.product.name }}</td>

@@ -1,0 +1,68 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-4 mt-2">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#productModal">Add
+          Product</button>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">No</th>
+            <th scope="col">Name</th>
+            <th scope="col">Description</th>
+            <th scope="col">Price</th>
+            <th scope="col">Stock</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of tblProduct; let i = index">
+            <td>{{ i + 1 }}</td>
+            <td>{{ product.name }}</td>
+            <td>{{ product.description }}</td>
+            <td>{{ product.price }}</td>
+            <td>{{ product.stock }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">Add Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input name="name" class="form-control" id="name" placeholder="Enter product name"
+                [(ngModel)]="product.name">
+            </div>
+            <div class="form-group">
+              <label for="description">Description</label>
+              <input name="description" class="form-control" id="description" placeholder="Enter product description"
+                [(ngModel)]="product.description">
+            </div>
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input name="price" class="form-control" id="price" placeholder="Enter product price"
+                [(ngModel)]="product.price">
+            </div>
+            <div class="form-group">
+              <label for="stock">Stock</label>
+              <input name="stock" class="form-control" id="stock" placeholder="Enter product stock"
+                [(ngModel)]="product.stock">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addProduct()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>

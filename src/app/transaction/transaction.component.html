@@ -1,0 +1,92 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-4 mt-2">
+        <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#transactionModal">Add
+          Transaction</button>
+      </div>
+    </div>
+    <div class="row">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Transaction ID</th>
+            <th>Company</th>
+            <th>Date</th>
+            <th>Product Name</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Total Price</th>
+          </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let transaction of tblTransaction; let i = index">
+                <tr>
+                  <td [attr.rowspan]="transaction.listDetails.length + 1">{{ i + 1 }}</td>
+                  <td [attr.rowspan]="transaction.listDetails.length + 1">{{ transaction.id }}</td>
+                  <td [attr.rowspan]="transaction.listDetails.length + 1">{{ transaction.company.name }}</td>
+                  <td [attr.rowspan]="transaction.listDetails.length + 1">{{ transaction.createdDate }}</td>
+                </tr>
+                <tr *ngFor="let details of transaction.listDetails">
+                    <td>{{ details.product.name }}</td>
+                    <td>{{ details.price }}</td>
+                    <td>{{ details.quantity }}</td>
+                    <td>{{ details.totalPrice }}</td>
+                </tr>
+            </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="modal fade" id="transactionModal" tabindex="-1" aria-labelledby="transactionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="transactionModalLabel">Add Transaction</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="code">Select Company</label>
+              <select class="form-select" [(ngModel)]="selectedCompany" name="company">
+                <option value="" selected></option>
+                <option *ngFor="let company of companies" [value]="company.id">
+                  {{company.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="name">Product Name</label>
+              <select class="form-select" [(ngModel)]="selectedProduct" name="product" (change)="changeProduct();calculateTotalPrice()">
+                <option value="" selected></option>
+                <option *ngFor="let product of products" [value]="product.id">
+                  {{product.name}}
+                </option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="price">Price</label>
+              <input name="price" class="form-control" id="price" placeholder="Choose product to get price"
+                [(ngModel)]="price" (change)="calculateTotalPrice()" disabled>
+            </div>
+            <div class="form-group">
+              <label for="quantity">Quantity</label>
+              <input name="quantity" class="form-control" id="quantity" placeholder="Enter quantity"
+                [(ngModel)]="quantity" (change)="calculateTotalPrice()">
+            </div>
+            <div class="form-group">
+              <label for="totalPrice">Total Price</label>
+              <input name="totalPrice" class="form-control" id="total-price" placeholder="Total price automatically calculated by system"
+                [(ngModel)]="totalPrice" disabled>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal" (click)="addTransaction()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <router-outlet></router-outlet>

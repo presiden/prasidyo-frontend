@@ -2,15 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { InputCompanyComponent } from './input-company/input-company.component';
-import { InputTransactionComponent } from './input-transaction/input-transaction.component';
 import { ReportComponent } from './report/report.component';
+import { CompanyComponent } from './company/company.component';
+import { TransactionComponent } from './transaction/transaction.component';
+import { ProductComponent } from './product/product.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
-  { path: 'input-company', component: InputCompanyComponent },
-  { path: 'input-transaction', component: InputTransactionComponent },
+  { path: '', component: HomeComponent },
+  { path: 'company', component: CompanyComponent },
+  { path: 'product', component: ProductComponent },
+  { path: 'transaction', component: TransactionComponent },
   { path: 'report', component: ReportComponent },
 ];
 
